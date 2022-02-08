@@ -1,6 +1,4 @@
-package Bibiotleca;
-
-import java.util.Date;
+package Biblioteca;
 
 public class Livro {
     private String titulo;
@@ -32,7 +30,7 @@ public class Livro {
     }
 
     public String setDataPublicacao(String dataPublicacao) {
-        this.dataPublicacao = dataPublicacao;
+        return this.dataPublicacao = dataPublicacao;
     }
 
     public String getCategoria() {
@@ -67,12 +65,22 @@ public class Livro {
         this.disponivel = disponivel;
     }
 
-
     public boolean socilitarEmprestimo(){
         if(disponivel){
+        	this.setDisponivel(false);
             return true;
         }
         else{
+            return false;
+        }
+    }
+    
+    public boolean devolver() {
+        if(!disponivel){
+            return true;
+        }
+        else{
+        	this.setDisponivel(true);
             return false;
         }
     }
