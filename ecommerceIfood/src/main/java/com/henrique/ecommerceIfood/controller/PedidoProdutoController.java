@@ -2,6 +2,7 @@ package com.henrique.ecommerceIfood.controller;
 
 
 import com.henrique.ecommerceIfood.DAO.PedidoProdutoDAO;
+import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.PedidoProduto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/pedidoproduto")
+@RequestMapping(Project.BASE_URL + "/pedidoProduto")
 public class PedidoProdutoController {
 
     @Autowired

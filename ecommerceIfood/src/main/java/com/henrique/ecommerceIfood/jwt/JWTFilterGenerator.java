@@ -2,12 +2,9 @@ package com.henrique.ecommerceIfood.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.henrique.ecommerceIfood.data.DetalhesCliente;
 import com.henrique.ecommerceIfood.models.Cliente;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,13 +19,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class JWTFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTFilterGenerator extends UsernamePasswordAuthenticationFilter {
 
     public static final int TOKEN_EXPIRACAO = 600_000;
     public static final String TOKEN_SENHA = "ULTRASECRETAPRANAOROUPAMEUDADOS=(";
+    public final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private AuthenticationManager autenticationManager;
+    public JWTFilterGenerator(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
@@ -36,9 +36,9 @@ public class JWTFilter extends UsernamePasswordAuthenticationFilter {
 
         try {
             Cliente cliente = new ObjectMapper()
-                    .readValue(request.getInputStream(), Cliente.class);
+                    .readValue(request.getInputStream(), Cliente.class); //cria uma classe cliente
 
-            return autenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     cliente.getEmail(),
                     cliente.getPassword(),
                     new ArrayList<>() // permissoes

@@ -1,6 +1,7 @@
 package com.henrique.ecommerceIfood.controller;
 
 import com.henrique.ecommerceIfood.DAO.PedidoDAO;
+import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/pedido")
+@RequestMapping(Project.BASE_URL + "/pedidos")
 public class PedidoController {
 
     @Autowired

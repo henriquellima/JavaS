@@ -2,6 +2,7 @@ package com.henrique.ecommerceIfood.controller;
 
 
 import com.henrique.ecommerceIfood.DAO.DepartamentoDAO;
+import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Departamento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/departamento")
+@RequestMapping(Project.BASE_URL + "/departamentos")
 public class DepartamentoController {
 
     @Autowired

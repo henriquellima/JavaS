@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class DetalhesUsuarioImpl implements UserDetailsService {
+public class DetalhesClienteImpl implements UserDetailsService {
 
     @Autowired
     private ClienteDAO usuarioDAO;

@@ -2,10 +2,10 @@ package com.henrique.ecommerceIfood.controller;
 
 
 import com.henrique.ecommerceIfood.DAO.ClienteDAO;
+import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/cliente")
-
+@RequestMapping(Project.BASE_URL + "/clientes")
 public class ClienteController {
 
     @Autowired
@@ -49,7 +48,7 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso negado");
         }
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body("tokenzinPáTí");
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("OI");
     }
 
 
