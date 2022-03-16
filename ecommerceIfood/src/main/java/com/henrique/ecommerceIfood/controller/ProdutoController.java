@@ -4,7 +4,9 @@ package com.henrique.ecommerceIfood.controller;
 import com.henrique.ecommerceIfood.DAO.ProdutoDAO;
 import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Produto;
+import com.henrique.ecommerceIfood.services.implementacao.ProdutoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +18,20 @@ import java.util.Optional;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoDAO produtoDAO;
+    @Qualifier("padrao")
+    private ProdutoServiceImpl service;
 
     @GetMapping("/getAll")
     public List<Produto> getAll() {
         List<Produto> produtosList;
-        produtosList = (List<Produto>) produtoDAO.findAll();
+        produtosList = (List<Produto>) service.findAll();
         return produtosList;
     }
 
+
     @GetMapping("/getbyid/{id}")
     public Optional<Produto> getById(@PathVariable("id") Integer id){
-        return produtoDAO.findById(id);
+        return service.findByID(id);
     }
 
 
@@ -37,7 +41,7 @@ public class ProdutoController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public Produto create(@RequestBody final Produto produto){
-        produtoDAO.save(produto);
+        service.save(produto);
         return produto;
     }
 }

@@ -33,7 +33,7 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     public Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pedido")
     private List<PedidoProduto> produtosList;
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class JWTFilterValidator extends BasicAuthenticationFilter {
 
     public static final String HEADER_ATRIBUTO = "Authorization";
-    public static final String ATRIBUTO_PREFIXO = "Baerer";
+    public static final String ATRIBUTO_PREFIXO = "Bearer ";
 
     public JWTFilterValidator(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -37,7 +37,7 @@ public class JWTFilterValidator extends BasicAuthenticationFilter {
         }
 
         String token = atributo.replace(ATRIBUTO_PREFIXO, "");
-
+        System.out.println(token);
         UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationToken(token);
 
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -45,8 +45,8 @@ public class JWTFilterValidator extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthenticationToken(String token){
-        String  usuario = JWT.require(Algorithm.HMAC512(JWTFilterGenerator.TOKEN_SENHA)).build().verify(token).getSubject();
-
+        String  usuario = JWT.require(Algorithm.HMAC256(JWTFilterGenerator.TOKEN_SENHA)).build().verify(token).getSubject();
+        System.out.println(usuario);
         if(usuario == null){
             return null;
         }

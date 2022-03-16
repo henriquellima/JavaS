@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(Project.BASE_URL + "/pedidoProduto")
+@RequestMapping(Project.BASE_URL + "/pedidoprodutos")
 public class PedidoProdutoController {
 
     @Autowired

@@ -1,10 +1,11 @@
 package com.henrique.ecommerceIfood.controller;
 
-import com.henrique.ecommerceIfood.DAO.PedidoDAO;
+import com.henrique.ecommerceIfood.DTO.FaturamentoMes;
 import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Pedido;
+import com.henrique.ecommerceIfood.services.Interfaces.IPedidosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,27 +16,27 @@ import java.util.Optional;
 public class PedidoController {
 
     @Autowired
-    private PedidoDAO pedidoDAO;
+    @Qualifier("dia-a-dia")
+    private IPedidosService service;
 
     @GetMapping("/getall")
-    public List<Pedido> getAll(){
-        return (List<Pedido>) pedidoDAO.findAll();
-
+    public List<Pedido> getAll() {
+        return (List<Pedido>) service.findAll();
     }
 
     @GetMapping("/getbyid/{id}")
-    public Optional<Pedido> getById(@PathVariable("id") Integer id){
-        return pedidoDAO.findById(id);
+    public Optional<Pedido> getById(@PathVariable("id") Integer id) {
+        return service.findByID(id);
     }
 
-    @PostMapping(
-            path = ("/cadastrar"),
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    public Pedido post(@RequestBody final Pedido pedido){
-        pedidoDAO.save(pedido);
-        return pedido;
+    @GetMapping("/getfaturamentomensal/{ano}")
+    public List<FaturamentoMes> getFaturamentoMensal(@PathVariable("ano") int ano) {
+        return service.getFaturamentoMes(ano);
+    }
+
+    @PostMapping(path = ("/cadastrar") )
+    public Pedido post(@RequestBody final Pedido novoPedido) {
+        return service.adicionarPedido(novoPedido);
     }
 
 }

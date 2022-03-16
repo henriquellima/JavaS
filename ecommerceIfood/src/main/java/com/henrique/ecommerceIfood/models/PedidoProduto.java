@@ -25,8 +25,8 @@ public class PedidoProduto {
     private Double preco_total;
 
     @ManyToOne
+    @JsonIgnoreProperties()
     @JoinColumn(name = "pedido_id")
-
     private Pedido pedido;
 
     @OneToOne

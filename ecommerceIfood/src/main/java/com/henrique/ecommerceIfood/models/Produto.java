@@ -26,12 +26,29 @@ public class Produto {
     private Integer preco;
 
     @Column(name = "link_foto", length = 300)
-    private String link_foto;
+    private String linkFoto;
 
     @ManyToOne   // relacao n:n
     @JsonIgnoreProperties("produtosList")
     @JoinColumn(name = "departamento_id")  // especificaçao da fk do modelo, nesse caso "Departamento"
     private Departamento departamento;
+
+    public Produto(){
+    }
+
+    public Produto(Integer id, String nome, String descricao, Integer qtdEstoque, Integer preco, String linkFoto,
+                   Integer idDepto, String nomeDepto, Integer andarDepto) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.qtdEstoque = qtdEstoque;
+        this.preco = preco;
+        this.linkFoto = linkFoto;
+        this.departamento = new Departamento();
+        this.departamento.setId(idDepto);
+        this.departamento.setNome(nomeDepto);
+        this.departamento.setAndar(andarDepto);
+    }
 
     public Integer getId() {
         return id;
@@ -69,16 +86,16 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getPreco() {
+    public Integer getPreco() {
         return preco;
     }
 
-    public String getLink_foto() {
-        return link_foto;
+    public String getLinkFoto() {
+        return linkFoto;
     }
 
-    public void setLink_foto(String link_foto) {
-        this.link_foto = link_foto;
+    public void setLink_foto(String linkFoto) {
+        this.linkFoto = linkFoto;
     }
 
     public Departamento getDepartamento() {

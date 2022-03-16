@@ -17,7 +17,7 @@ import java.util.Optional;
 public class DepartamentoController {
 
     @Autowired
-    DepartamentoDAO departamentoDAO;
+    private DepartamentoDAO departamentoDAO;
 
     @GetMapping("/getall")
     public List<Departamento> getAll() {

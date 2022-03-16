@@ -26,6 +26,7 @@ public class Departamento {
     @JsonIgnoreProperties("departamento")
     private List<Produto> produtosList;
 
+
     public int getId() {
         return id;
     }
