@@ -30,8 +30,8 @@ public class Pedido {
 
     @ManyToOne
     @JsonIgnoreProperties("pedidosList")
-    @JoinColumn(name = "cliente_id")
-    public Cliente cliente;
+    @JoinColumn(name = "usuario_id")
+    public Usuario usuario;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pedido")
@@ -45,12 +45,12 @@ public class Pedido {
         this.produtosList = produtosList;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getId() {

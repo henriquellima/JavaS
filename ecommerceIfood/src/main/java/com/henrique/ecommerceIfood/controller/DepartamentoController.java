@@ -4,6 +4,7 @@ package com.henrique.ecommerceIfood.controller;
 import com.henrique.ecommerceIfood.DAO.DepartamentoDAO;
 import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Departamento;
+import com.henrique.ecommerceIfood.services.implementacao.DepartamentoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,25 +18,21 @@ import java.util.Optional;
 public class DepartamentoController {
 
     @Autowired
-    private DepartamentoDAO departamentoDAO;
+    private DepartamentoServiceImpl service;
 
     @GetMapping("/getall")
     public List<Departamento> getAll() {
-        return (List<Departamento>) departamentoDAO.findAll();
+        return (List<Departamento>) service.findAll();
     }
 
     @GetMapping("/getbyid/{id}")
     public Optional<Departamento> getByID(@PathVariable("id") Integer id) {
-        return departamentoDAO.findById(id);
+        return service.findByID(id);
     }
 
-    @PostMapping(
-            path = ("/cadastrar"),
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
+    @PostMapping( path = ("/cadastrar") )
     public Departamento post(@RequestBody final Departamento departamento){
-        departamentoDAO.save(departamento);
+        service.save(departamento);
         return departamento;
     }
 }

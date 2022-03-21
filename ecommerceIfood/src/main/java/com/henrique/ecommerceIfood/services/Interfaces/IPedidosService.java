@@ -1,9 +1,7 @@
 package com.henrique.ecommerceIfood.services.Interfaces;
 
 
-import com.henrique.ecommerceIfood.DAO.PedidoDAO;
-import com.henrique.ecommerceIfood.DTO.FaturamentoMes;
-import com.henrique.ecommerceIfood.models.Departamento;
+import com.henrique.ecommerceIfood.DTO.FaturamentoMesDTO;
 import com.henrique.ecommerceIfood.models.Pedido;
 
 import java.util.List;
@@ -14,7 +12,7 @@ public interface IPedidosService {
 
     public Pedido adicionarPedido(Pedido novoPedido);
 
-    public List<FaturamentoMes> getFaturamentoMes(int ano);
+    public List<FaturamentoMesDTO> getFaturamentoMes(int ano);
 
     public boolean removerPedido(Integer id);
 
@@ -23,5 +21,6 @@ public interface IPedidosService {
     public List<Pedido> findAll();
 
     public Pedido save(Pedido pedido);
+
 
 }

@@ -1,15 +1,15 @@
 package com.henrique.ecommerceIfood.DTO;
 
-public class FaturamentoMes {
+public class FaturamentoMesDTO {
     private Integer mes;
     private Double total;
     private Long qtdPedidos;
 
-    public FaturamentoMes() {
+    public FaturamentoMesDTO() {
 
     }
 
-    public FaturamentoMes(Integer mes, Double total, Long qtdPedidos) {
+    public FaturamentoMesDTO(Integer mes, Double total, Long qtdPedidos) {
         this.mes = mes;
         this.total = total;
         this.qtdPedidos = qtdPedidos;

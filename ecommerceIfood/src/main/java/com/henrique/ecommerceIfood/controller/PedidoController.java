@@ -1,6 +1,6 @@
 package com.henrique.ecommerceIfood.controller;
 
-import com.henrique.ecommerceIfood.DTO.FaturamentoMes;
+import com.henrique.ecommerceIfood.DTO.FaturamentoMesDTO;
 import com.henrique.ecommerceIfood.configuracoes.Project;
 import com.henrique.ecommerceIfood.models.Pedido;
 import com.henrique.ecommerceIfood.services.Interfaces.IPedidosService;
@@ -30,7 +30,7 @@ public class PedidoController {
     }
 
     @GetMapping("/getfaturamentomensal/{ano}")
-    public List<FaturamentoMes> getFaturamentoMensal(@PathVariable("ano") int ano) {
+    public List<FaturamentoMesDTO> getFaturamentoMensal(@PathVariable("ano") int ano) {
         return service.getFaturamentoMes(ano);
     }
 

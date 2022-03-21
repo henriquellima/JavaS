@@ -2,15 +2,13 @@ package com.henrique.ecommerceIfood.services.implementacao;
 
 
 import com.henrique.ecommerceIfood.DAO.PedidoDAO;
-import com.henrique.ecommerceIfood.DTO.FaturamentoMes;
-import com.henrique.ecommerceIfood.models.Departamento;
+import com.henrique.ecommerceIfood.DTO.FaturamentoMesDTO;
 import com.henrique.ecommerceIfood.models.Pedido;
 import com.henrique.ecommerceIfood.models.PedidoProduto;
 import com.henrique.ecommerceIfood.services.Interfaces.IPedidosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,7 +32,7 @@ public class PedidosServiceImpl implements IPedidosService {
     }
 
     @Override
-    public List<FaturamentoMes> getFaturamentoMes(int ano) {
+    public List<FaturamentoMesDTO> getFaturamentoMes(int ano) {
         return dao.getFaturamentoMes(ano);
     }
 
@@ -63,4 +61,5 @@ public class PedidosServiceImpl implements IPedidosService {
     public Pedido save(Pedido pedido) {
         return dao.save(pedido);
     }
+
 }
